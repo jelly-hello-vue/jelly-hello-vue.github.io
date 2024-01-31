@@ -1,10 +1,10 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 
-const count = ref(1)
+const count = ref(0)
 
 function increment() {
-    count.value = count.value + 1
+    count.value ++
  }
 
 onMounted(() => {
