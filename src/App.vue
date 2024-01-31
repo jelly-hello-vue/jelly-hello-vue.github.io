@@ -1,11 +1,14 @@
 <script setup>
-
 import { ref } from 'vue'
 
-const message = ref({name: "LIN", age: 30})
-const name = "LIN"
-
+const parentMessage = ref('Parent')
+const items = ref([{ message: 'Foo' }, { message: 'Bar' }])
 </script>
+
 <template>
-<h1>{{ message }}</h1>
+<li v-for="(item, index) in items">
+{{ parentMessage }} - {{ index }} - {{ item.message }}
+</li>
 </template>
+
+
