@@ -13,8 +13,8 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  // add @)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
-build: {
+  // add @)))))
+  build: {
 outDir: "docs"
  },
 })
