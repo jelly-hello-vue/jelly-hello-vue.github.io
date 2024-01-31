@@ -1,11 +1,11 @@
 <script setup>
-import category from "@/assets/category.json"
-const categories = category
+import toycategory from "@/assets/toycategory.json"
+const categories = toycategory
 </script>
 <template>
  <div v-for="item in categories">
-  name : {{ item.name }} <br> 
-  url : <a v-bind:href=item.image_url>{{ item.image_url }}</a> <br> 
-  code : {{ item.code }} <hr>
+  name : {{ item.type }} <br> 
+  prefix : {{ item.prefix }}<br> 
+  code : {{ item.categorySubDivision }} <hr>
  </div>
 </template>
