@@ -9,3 +9,5 @@ const items = ref([{ message: 'Foo' }, { message: 'Bar' }])
 {{ parentMessage }} - {{ index }} - {{ item.message }}
 </li>
 </template>
+
+
