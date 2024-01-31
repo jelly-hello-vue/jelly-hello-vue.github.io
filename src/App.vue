@@ -1,19 +1,24 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 
-const count = ref(0)
+//reactive state
+const count = ref({
+      cnt: 0,
+      name: "PARK",
+ })
 
+// functions that mutate state and trigger updates
 function increment() {
-    count.value ++
+    count.value.cnt = count.value.cnt + 1
+    count.value.name = count.value.name.split('').reverse().join('')
  }
 
-onMounted(() => {
-	console.log('The initial count is ${count.value}.')
-})
+//lifecycle hooks
+onMounted(() => console.log('The initial count is ${count.value}.'))
  </script>
 
     <template>
-    <button @click="increment">Count is: {{ count }}</button>
+    <button @click="increment">Count is: {{ count.cnt }} {{ count.name }}</button>
     </template>
 
     <style scoped>
