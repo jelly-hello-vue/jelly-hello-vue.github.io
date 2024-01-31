@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue'
-
 const parentMessage = ref('Parent')
 const items = ref([{ message: 'Foo' }, { message: 'Bar' }])
 </script>
