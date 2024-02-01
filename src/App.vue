@@ -7,6 +7,20 @@ const todos = ref ([
 	{ id: id++, issue: 'Backlog' }, { id: id++, issue: 'Todo' },
 	{ id: id++, issue: 'Going Hawaii' }
 ])
+
+function addTodo(){
+ //todos update... -->
+  if (newTodo.value.trim() === '') return;
+
+  todos.value.push({ id: id++, issue: newTodo.value });
+  newTodo.value = '';
+}
+
+function removeTodo(todo){
+ //todos remove
+ //배열을 [].filter 해서 (t / f) -->
+ todos.value = todos.value.filter(t => t.id !== todo.id);
+}
 </script>
 
 <template>
