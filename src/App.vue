@@ -1,20 +1,40 @@
 <script setup>
-import toycategory from "@/assets/toycategory.json"
+import { ref } from 'vue'
 
-const categories = toycategory.filter(item => item.type === '몸' || item.type === '시간 관리')
+let id = 0
+const newTodo = ref('')
+const todos = ref([
 
+    { id: id++, issue: 'Backlog' }, {id: id++, issue: 'Todo' }, 
+    { id: id++, issue: 'Going Hawaii' },
+ ])
+ 
+function addTodo(){
+ //todos update... 
+  console.log('newTodo', newTodo)
+  todos.value.push({ 
+	id: id++, 
+	issue: newTodo.value 
+  })
+}
+
+function removeTodo(todo){
+ //todos remove
+ //배열을 [].filter 해서 (t / f) -->
+ console.log(todo)
+ todos.value = todos.value.filter((t) => t !== todo);
+}
 </script>
 
 <template>
-  <div>
-    <div v-for="item in categories" :key="item.type">
-      name: {{ item.type }} <br>
-      prefix: {{ item.prefix }}<br>
-      code: {{ item.categorySubDivision.join(', ') }} <hr>
-    </div>
-    <div v-if="categories.length === 0">
-      No items found.
-    </div>
-  </div>
+<form @submit.prevent="addTodo">
+<input v-model="newTodo">
+<button>할 일 추가</button>
+</form>
+<ul>
+<li v-for="todo in todos">
+{{ todo.issue }} - <button @click="removeTodo(todo)">Done</button>
+</li>
+</ul>
 </template>
 
