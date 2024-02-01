@@ -1,11 +1,13 @@
-<script setup>
-import category from "@/assets/category.json"
-const categories = category
-</script>
-<template>
- <div v-for="item in categories">
-  name : {{ item.name }} <br> 
-  url : <a v-bind:href=item.image_url>{{ item.image_url }}</a> <br> 
-  code : {{ item.code }} <hr>
- </div>
-</template>
+ <script setup>
+ import { reactive, computed, ref } from 'vue'
+
+ const author = ref({
+ name: 'John Doe',
+ books: [1, 2, 3]
+ })
+ </script>
+
+ <template>
+ <p>Has published books:</p>
+ <span>{{ author.books.length > 2 ? 'Yes' : 'No' }}</span>
+ </template>
