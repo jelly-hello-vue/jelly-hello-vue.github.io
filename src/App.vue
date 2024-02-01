@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onUpdated, onMounted, onBeforeUpdate } from 'vue'
+
 const count = ref(0)
     onUpdated(() => {
 	    console.log(document.getElementById('count').textContent)
@@ -7,5 +8,5 @@ const count = ref(0)
 </script>
 
 <template>
-<button id="count"  @click="count++">{{ count }}</button>
+<button id="count"  @click="count++">{{ `^^${count}^^` }}</button>
 </template>
