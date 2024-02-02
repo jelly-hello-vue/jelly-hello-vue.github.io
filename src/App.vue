@@ -1,42 +1,32 @@
-<!-- 아침체조 -->
-
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
-const show = ref(true)
-const list = ref([1, 2, 3])
+const todoId = ref(1); const todoData = ref(null)
 
-const toggleRendering = () => {
-  show.value = !show.value;
-};
+async function fetchData() {
+    todoData.value = null
+	const res = await fetch(
+		`https://jsonplaceholder.typicode.com/todos/${todoId.value}`
+		)
+	todoData.value = await res.json()
+}
 
-const addItem = () => {
-  list.value.push(list.value.length + 1);
-};
+//Watchers 감시자
+//todoId 변수의 값이 변경될 때마다 fetchData 함수를 호출하도록 감시 설정
+watch(todoId, fetchData)
 
-const removeItem = () => {
-  if (list.value.length > 0) {
-    list.value.pop();
-  }
-};
+fetchData() //막으면 버튼 막힘.
 
-const reverseList = () => {
-  list.value = list.value.reverse();
-};
+    function get() {
+	todoId.value++
+//	    fetchData()
+    }
 </script>
 
 <template>
-  <div>
-    <button @click="toggleRendering">List 렌더링 ON/OFF </button>
-    <button @click="addItem">List 추가 </button>
-    <button @click="removeItem">List 제거  </button>
-    <button @click="reverseList">List 뒤집기  </button>
-
-    <ul v-if="show">
-      <li v-for="item of list" :key="item">{{ item }}</li>
-    </ul>
-    <p v-else-if="list.length">List is not empty, but hidden.</p>
-    <p v-else>List is empty.</p>
-  </div>
+<p>Todo id: {{ todoId }}</p>
+<button @click="todoId++" :disabled="!todoData">Fetch next todo</button>
+<p v-if="!todoData">Loading...</p>
+<pre v-else>{{ todoData }}</pre>
 </template>
 
