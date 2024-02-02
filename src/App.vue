@@ -11,16 +11,15 @@ async function fetchData() {
 	todoData.value = await res.json()
 }
 
-//Watchers
+//Watchers 감시자
 //todoId 변수의 값이 변경될 때마다 fetchData 함수를 호출하도록 감시 설정
-
 watch(todoId, fetchData)
 
 fetchData() //막으면 버튼 막힘.
 
     function get() {
 	todoId.value++
-	    fetchData()
+//	    fetchData()
     }
 </script>
 
