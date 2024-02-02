@@ -1,20 +1,22 @@
-<!-- use API -->
-
 <script setup>
 import { ref, watch } from 'vue'
 
 const todoId = ref(1); const todoData = ref(null)
 
-async funtion fetchData() {
+async function fetchData() {
     todoData.value = null
 	const res = await fetch(
-		'https://jsonplaceholder.typicode.com/todos/${todoId.value}'
+		`https://jsonplaceholder.typicode.com/todos/${todoId.value}`
 		)
 	todoData.value = await res.json()
 }
 
-fetchData()
+fetchData() //막으면 버튼 막힘.
 
+    function get() {
+	todoId.value++
+	    fetchData()
+    }
 </script>
 
 <template>
